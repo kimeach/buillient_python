@@ -1,5 +1,5 @@
 import pandas as pd
-from quant_analysis import moving_average, rsi, bollinger_bands
+from app.quant_analysis import moving_average, rsi, bollinger_bands
 
 
 def main(path: str):
