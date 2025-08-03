@@ -61,14 +61,14 @@ class AdvancedStockRecommendationEngine(StockRecommendationEngine):
             ma20 = close.rolling(window=20).mean().iloc[-1]
             current_price = close.iloc[-1]
             
-            # RSI 계산
+            # RSI (Relative Strength Index) 계산 (과매수/과매도 지표)
             delta = close.diff()
             gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
             loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
             rs = gain / loss
             rsi = 100 - (100 / (1 + rs)).iloc[-1]
             
-            # 볼린저 밴드
+            # 볼린저 밴드 (Bollinger Bands)
             bb_center = close.rolling(window=20).mean().iloc[-1]
             bb_std = close.rolling(window=20).std().iloc[-1]
             bb_upper = bb_center + (bb_std * 2)
